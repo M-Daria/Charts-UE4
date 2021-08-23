@@ -14,6 +14,8 @@
         - ChartLineSection
     - ChartBackgroundComponent
 
+*Примечания*: в проекте также содержится класс GameCard, демонстрирующий работу с графиками.
+
 ***
 
 #### ChartViewComponent
@@ -24,7 +26,7 @@ ChartViewComponent хранит координаты линий в массив�
 
 ##### *functions*:
 Область видимости | Возвращаемое значение | Название | Назначение
-- |
+:-:|:-:|-|-|
 public | void | CreateChartViewport<br>() | Создаёт график без линий со значениями параметров по умолчанию.
 public | void | AddLine<br>(<br>int32 Index,<br> const TArray\<FVector2D>& InVertices<br>) | Добавляет линию на данный график.
 public | void | UpdateLine<br>(<br>int32 Index,<br> const TArray\<FVector2D>& InVertices<br>) | Обновляет линию данного графика.
@@ -53,7 +55,7 @@ private | void | Trim<br>() | Обрезка линий под окно граф
 
 ##### *variables*:
 Область видимости | Тип переменной | Название | Назначение
-- |
+:-:|:-:|-|-|
 private | bool | bAutoscaleX | Применять ли автоматическое масштабирование по оси х.
 private | bool | bAutoscaleY |
 private | FVector2D | ViewportSize | Размер окна графика.
@@ -71,7 +73,7 @@ ChartLinesComponent — это компонент, содержащий лини
 
 ##### *functions*:
 Область видимости | Возвращаемое значение | Название | Назначение
-- |
+:-:|:-:|-|-|
 public | void | CreateChartLine<br>(<br>int32 Index,<br> const TArray\<FVector2D>& InVertices<br>) | Создаёт линию с параметрами по умолчанию.
 public | void | ClearChartLine<br>(<br>int32 Index<br>) | Удаляет конкретную линию.
 public | void | ClearAllChartLines<br>() | Удаляет все линии.
@@ -89,7 +91,7 @@ private | void | UpdateChartLine<br>(<br>int32 Index,<br> bool bUpdate = false<b
 
 ##### *variables*:
 Область видимости | Тип переменной | Название | Назначение
-- |
+:-:|:-:|-|-|
 private | UProceduralMeshComponent* | BackgroundControllerProcMesh | Компонент процедурной сетки, отвечающий за отрисовку линий.
 private | UMaterialInterface* | Material | Материал для всех линий.
 private | TArray\<FLineSection> | Lines | Массив структур с параметрами линий.
@@ -105,14 +107,14 @@ ChartLineSection — это структура, содержащая парам�
 
 ##### *enum EChartLineType*:
 Название | Назначение
-- |
+:-:|-|
 Solid | Сплошная линия.<br><img src="Imgs/SolidLine.png" width="100" height="70" />
 Dashed | Пунктирная линия.<br><img src="Imgs/DashedLine.png" width="100" height="70" />
 Dotted | Вместо линии отображаются точки.<br><img src="Imgs/DottedLine.png" width="100" height="70" />
 
 ##### *functions*:
 Область видимости | Возвращаемое значение | Название | Назначение
-- |
+:-:|:-:|-|-|
 public | void | Reset<br>() | Сбрасывает значения параметров линии к значениям по умолчанию.
 public | void | BuildLine<br>(<br>TArray\<FVector>& OutVertices,<br> TArray\<FVector2D>& OutUVs<br>) | Возвращает значения вершин линии и UV-координат с учётом её параметров.
 private | void | BuildSolidLine<br>(<br>TArray\<FVector>& OutVertices,<br> TArray\<FVector2D>& OutUVs<br>) const | 
@@ -126,7 +128,7 @@ private | FVector | InvertAxisYZ<br>(<br>const FVector& Value<br>) const | Ин�
 
 ##### *variables*:
 Область видимости | Тип переменной | Название | Назначение
-- |
+:-:|:-:|-|-|
 public | UMaterialInstanceDynamic* | DynMaterial | Динамический инстанс материала линии.
 public | float | ZDepth | Глубина линии по оси z.
 public | TArray\<FVector2D> | Vertices | Координаты линии.
@@ -145,7 +147,7 @@ ChartBackgroundComponent — это компонент, отображающий
 
 ##### *enum EChartGridType*:
 Название | Назначение
-- |
+:-:|-|
 NoGrid | Без сетки.<br><img src="Imgs/NoGrid.png" width="70" height="70" />
 Solid | Сетка из сплошных линий.<br><img src="Imgs/SolidGrid.png" width="70" height="70" />
 SolidHorizontal | Сплошные линии только по горизонтали.<br><img src="Imgs/SolidGridH.png" width="70" height="70" />
@@ -158,7 +160,7 @@ StripedVertical | Вертикальные полосы.<br><img src="Imgs/Strip
 
 ##### *functions*:
 Область видимости | Возвращаемое значение | Название | Назначение
-- |
+:-:|:-:|-|-|
 public | void | CreateChartBackground<br>(<br>const FVector2D& XRangeValue,<br> const FVector2D& YRangeValue<br>) | Создаёт фон со значениями по умолчанию.
 public | void | SetChartBackgroundXRange<br>(<br>const FVector2D& XRangeValue<br>) | Устанавливает диапазон по оси х, в котором отображаются числовые значения.
 public | FVector2D | GetChartBackgroundXRange<br>() const | Возвращает диапазон по оси х, в котором отображаются числовые значения.
@@ -189,7 +191,7 @@ private | float | AttachToDecimal<br>(<br>float Value,<br> float Decimal<br>) co
 
 ##### *variables*:
 Область видимости | Тип переменной | Название | Назначение
-- |
+:-:|:-:|-|-|
 private | UProceduralMeshComponent* | BackgroundControllerProcMesh | Компонент процедурной сетки, отвечающий за отрисовку фона.
 private | UMaterialInterface* | Material | Материал для фона.
 private | TArray<UMaterialInstanceDynamic*> | DynMaterials | Динамические материал инстансы для частей фона (фона, сетки, рамки (не используется в настоящее время)).
